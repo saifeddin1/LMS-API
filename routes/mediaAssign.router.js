@@ -1,0 +1,13 @@
+const router = require("express").Router();
+const { permit } = require('../middlewares/auth.middleware');
+const { ADMIN, INSTRUCTOR, STUDENT } = require('../constants/roles.constant');
+let controller = require("../controllers/mediaAssign.controller");
+router.get("/", permit(STUDENT, INSTRUCTOR, ADMIN), controller.getAll);
+router.get("/:id", permit(STUDENT, INSTRUCTOR, ADMIN), controller.findById);
+router.get("/findByAssignIdForStudent/:mediaAssignId/:mediaTypeId", permit(STUDENT), controller.findByAssignIdForStudent);
+router.get("/findByAssignId/:mediaAssignId/:mediaTypeId", permit(INSTRUCTOR, ADMIN), controller.findByAssignId);
+router.post("/", permit(INSTRUCTOR, ADMIN), controller.create);
+router.put("/editOrders", permit(INSTRUCTOR, ADMIN), controller.editOrders);
+router.put("/:id", permit(INSTRUCTOR, ADMIN), controller.updateById);
+router.delete("/:id", permit(INSTRUCTOR, ADMIN), controller.deleteById);
+module.exports = router;

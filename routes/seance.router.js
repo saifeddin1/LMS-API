@@ -1,0 +1,12 @@
+const router = require("express").Router();
+const { permit } = require('../middlewares/auth.middleware');
+const { ADMIN, INSTRUCTOR, STUDENT } = require('../constants/roles.constant');
+const seanceController = require("../controllers/seance.controller");
+router.get("/", permit(ADMIN, INSTRUCTOR), seanceController.getAll);
+router.get("/getAllByNivMat/:viewDate", permit(STUDENT, INSTRUCTOR, ADMIN), seanceController.getAllByNivMat);
+router.get("/findById/:id", permit(STUDENT, INSTRUCTOR, ADMIN), seanceController.findById);
+router.get("/search/:query", permit(INSTRUCTOR, ADMIN), seanceController.search);
+router.post("/", permit(ADMIN, INSTRUCTOR), seanceController.create);
+router.put("/:id", permit(ADMIN, INSTRUCTOR), seanceController.updateById);
+router.delete("/:id", permit(ADMIN, INSTRUCTOR), seanceController.deleteById);
+module.exports = router;

@@ -1,0 +1,11 @@
+const router = require("express").Router();
+const { permit } = require('../middlewares/auth.middleware');
+const { ADMIN, INSTRUCTOR, STUDENT } = require('../constants/roles.constant');
+const chapitreController = require("../controllers/chapitre.controller");
+router.get("/getAll", permit(INSTRUCTOR, ADMIN), chapitreController.getAll);
+router.get("/:id", permit(STUDENT, INSTRUCTOR, ADMIN), chapitreController.findById);
+router.get("/search/:id", permit(STUDENT, INSTRUCTOR, ADMIN), chapitreController.search);
+router.post("/", permit(INSTRUCTOR, ADMIN), chapitreController.create);
+router.put("/editById/:id", permit(INSTRUCTOR, ADMIN), chapitreController.updateById);
+router.delete("/:id", permit(INSTRUCTOR, ADMIN), chapitreController.deleteById);
+module.exports = router;
