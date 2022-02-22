@@ -38,13 +38,11 @@ const run = async (req ,res) => {
               //       console.log("successfully updated")
               //   }else{
               const response= await User.updateOne( {"_id": ObjectId(obj._id)}, {$set:obj}, {upsert: true})
-              console.log("hi")
+              
               if(response){
-                  console.log("no bromblem jawak feez fez")
+                  console.log("send message successfully...")
               }
-              else{
-                  console.log('barsha bromblem ye kebdi')
-              }
+              
                 }catch(e){
                     console.log("catch : "+e)
                 }
