@@ -37,7 +37,7 @@ exports.login = async (req, res) => {
 
 exports.logout = async (req, res) => {
     const { user } = req
-    userSchema.findByIdAndUpdate({ _id: user._id },
+    userSchema.findByIdAndUpdate({ email: user.email },
         { currentToken: '' },
         { new: true })
         .then((savedDoc) => res.status(204).json())

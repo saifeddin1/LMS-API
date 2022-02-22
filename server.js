@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 var cors = require('cors')
 const app = express();
+const { Kafka } = require('kafkajs')
 
 require("dotenv").config();
 
@@ -73,3 +74,14 @@ const server = app.listen(PORT, () => {
 /* Socket.io Connection */
 
 require("./routes/chat.router").listen(server);
+
+
+
+
+
+const  run= require('./kafka')
+
+run().catch(console.error)
+
+
+
