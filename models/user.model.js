@@ -20,10 +20,10 @@ const userSchema = new Schema({
     unique: "username already registered",
     required: "username is required"
   },
-  password: {
-    type: String,
-    required: "password is required",
-  },
+  // password: {
+  //   type: String,
+  //   required: "password is required",
+  // },
   email: {
     type: String,
     trim: true,
@@ -36,6 +36,7 @@ const userSchema = new Schema({
     trim: true,
     required: "Specify Type of User",
   },
+  
   studentNiveauId: {
     type: mongoose.Types.ObjectId,
     ref: "Niveau"
@@ -52,6 +53,10 @@ const userSchema = new Schema({
       facebook: { type: String, default: "", trim: true },
     },
     default: new Object()
+  },
+  enabled: {
+    type: Boolean,
+    default: true,
   },
   permissions: {
     type: {
