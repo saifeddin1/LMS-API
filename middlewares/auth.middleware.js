@@ -15,8 +15,8 @@ exports.permit = (...permittedRoles) => {
                 userSchema
                     .findById(user._id).select('currentToken')
                     .then((userDoc) => {
-                        if (!userDoc || userDoc.currentToken != token)
-                            return res.status(401).json({ message: "Veuillez vous reconnecter." })
+                        // if (!userDoc || userDoc.currentToken != token)
+                        //     return res.status(401).json({ message: "Veuillez vous reconnecter." })
                         if (permittedRoles && permittedRoles.length) {
                             if (user && permittedRoles.includes(user.type)) {
                                 // console.log("user :", user);
