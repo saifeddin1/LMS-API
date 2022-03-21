@@ -59,10 +59,10 @@ connection.once("open", () => {
 
 /* Frontend Static files */
 
-app.use(express.static(path.join(__dirname, "..", "frontend", "dist", "uimpactify-app")));
+app.use(express.static(path.join(__dirname, "..", "frontend", "dist", "mup-app")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "frontend", "dist", "uimpactify-app", "index.html"));
+  res.sendFile(path.join(__dirname, "..", "frontend", "dist", "mup-app", "index.html"));
 });
 
 /* Express Server */
