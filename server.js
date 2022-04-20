@@ -3,6 +3,42 @@ const bodyParser = require("body-parser");
 const path = require("path");
 var cors = require('cors')
 const app = express();
+// *****fire base config
+const firebaseAdmin=require("firebase-admin");
+const serviceAccount = require("./mup-it-75ab2-firebase-adminsdk-m4n9l-5d17513e0a.json");
+firebaseAdmin.initializeApp({
+  credential: firebaseAdmin.credential.cert(serviceAccount),
+  databaseURL: "https://mup-it-75ab2-default-rtdb.firebaseio.com/",
+});
+
+const token="cp5ks42cfkAZ4CdTaGbfq9:APA91bFcQiH1EZLcJN8DB7av8hpzebgZFDGDmbChszmB2LiR_Z5wH8yilcweJjv5K_cuHjiRoKGPKnYZQiye77ftK0_DXBz84GONRml-ufRn4N_Szg-xT8c1w0X_eBF-YZfBDbO-PaS7"
+
+var payload = {
+  notification: {
+    title: "",
+    body: "",
+  },
+
+};
+
+const options={
+  priority:"high",
+  timeToLive:60 * 60 * 24
+}
+app.post('/notif',(req,res)=>{
+  // payload.notification.title=res.body.notification.title
+  firebaseAdmin.messaging().sendToDevice(token,payload,options).then(function(response){
+    res.json()
+    console.log(req.notification)
+  console.log("message sent !!!")
+  // console.log(payload)
+})
+  .catch(function(error){
+    console.log("error noritification firebase")
+  })
+})
+
+
 
 require("dotenv").config();
 
