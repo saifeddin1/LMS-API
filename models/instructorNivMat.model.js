@@ -9,7 +9,7 @@ const instructorNivMatSchema = new Schema({
         required: true
     },
     userId: {
-        type: String,
+        type: String,//mongoose.Types.ObjectId,
         ref: "User",
         required: true
     },

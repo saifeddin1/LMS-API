@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 var cors = require('cors')
 const app = express();
+<<<<<<< HEAD
 // *****fire base config
 const firebaseAdmin=require("firebase-admin");
 const serviceAccount = require("./mup-it-75ab2-firebase-adminsdk-m4n9l-5d17513e0a.json");
@@ -39,6 +40,9 @@ app.post('/notif',(req,res)=>{
 })
 
 
+=======
+const { Kafka } = require('kafkajs')
+>>>>>>> 6a188d810088846fcf75d9eee0a4cb5f6e3b6b88
 
 require("dotenv").config();
 
@@ -94,10 +98,10 @@ connection.once("open", () => {
 
 /* Frontend Static files */
 
-app.use(express.static(path.join(__dirname, "..", "frontend", "dist", "uimpactify-app")));
+app.use(express.static(path.join(__dirname, "..", "frontend", "dist", "mup-app")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "..", "frontend", "dist", "uimpactify-app", "index.html"));
+  res.sendFile(path.join(__dirname, "..", "frontend", "dist", "mup-app", "index.html"));
 });
 
 /* Express Server */
@@ -109,3 +113,14 @@ const server = app.listen(PORT, () => {
 /* Socket.io Connection */
 
 require("./routes/chat.router").listen(server);
+
+
+
+
+
+const  run= require('./kafka')
+
+run().catch(console.error)
+
+
+
