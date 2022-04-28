@@ -7,12 +7,8 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
-<<<<<<< HEAD
     "express": "^4.17.1",
     "firebase-admin": "^10.0.2",
-=======
-    "express": "^4.17.2",
->>>>>>> 6a188d810088846fcf75d9eee0a4cb5f6e3b6b88
     "gridfs-stream": "^1.1.1",
     "http": "0.0.1-security",
     "jsonwebtoken": "^8.5.1",

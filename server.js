@@ -3,47 +3,6 @@ const bodyParser = require("body-parser");
 const path = require("path");
 var cors = require('cors')
 const app = express();
-<<<<<<< HEAD
-// *****fire base config
-const firebaseAdmin=require("firebase-admin");
-const serviceAccount = require("./mup-it-75ab2-firebase-adminsdk-m4n9l-5d17513e0a.json");
-firebaseAdmin.initializeApp({
-  credential: firebaseAdmin.credential.cert(serviceAccount),
-  databaseURL: "https://mup-it-75ab2-default-rtdb.firebaseio.com/",
-});
-
-const token="cp5ks42cfkAZ4CdTaGbfq9:APA91bFcQiH1EZLcJN8DB7av8hpzebgZFDGDmbChszmB2LiR_Z5wH8yilcweJjv5K_cuHjiRoKGPKnYZQiye77ftK0_DXBz84GONRml-ufRn4N_Szg-xT8c1w0X_eBF-YZfBDbO-PaS7"
-
-var payload = {
-  notification: {
-    title: "",
-    body: "",
-  },
-
-};
-
-const options={
-  priority:"high",
-  timeToLive:60 * 60 * 24
-}
-app.post('/notif',(req,res)=>{
-  // payload.notification.title=res.body.notification.title
-  firebaseAdmin.messaging().sendToDevice(token,payload,options).then(function(response){
-    res.json()
-    console.log(req.notification)
-  console.log("message sent !!!")
-  // console.log(payload)
-})
-  .catch(function(error){
-    console.log("error noritification firebase")
-  })
-})
-
-
-=======
-const { Kafka } = require('kafkajs')
->>>>>>> 6a188d810088846fcf75d9eee0a4cb5f6e3b6b88
-
 require("dotenv").config();
 
 app.use(express.static(__dirname + "/public"));
@@ -71,6 +30,8 @@ const instructorNivRouter = require("./routes/instructorNiv.router");
 const instructorNivMatRouter = require("./routes/instructorNivMat.router");
 const seanceNivRouter = require("./routes/seanceNiv.router");
 const seanceNivMatRouter = require("./routes/seanceNivMat.router");
+const notificationRouter = require("./routes/notification.router");
+const cantineRouter = require("./routes/cantine.router");
 
 app.use("/api/chat", chatRouter);
 app.use("/api/user", userRouter);
@@ -90,6 +51,8 @@ app.use("/api/instructorNivMat", instructorNivMatRouter);
 app.use("/api/seanceNiv", seanceNivRouter);
 app.use("/api/seanceNivMat", seanceNivMatRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/notifications", notificationRouter);
+app.use("/api/cantine", cantineRouter);
 
 const { connection } = require('./connection');
 connection.once("open", () => {
