@@ -3,8 +3,6 @@ const bodyParser = require("body-parser");
 const path = require("path");
 var cors = require('cors')
 const app = express();
-const { Kafka } = require('kafkajs')
-
 require("dotenv").config();
 
 app.use(express.static(__dirname + "/public"));
@@ -32,6 +30,8 @@ const instructorNivRouter = require("./routes/instructorNiv.router");
 const instructorNivMatRouter = require("./routes/instructorNivMat.router");
 const seanceNivRouter = require("./routes/seanceNiv.router");
 const seanceNivMatRouter = require("./routes/seanceNivMat.router");
+const notificationRouter = require("./routes/notification.router");
+const cantineRouter = require("./routes/cantine.router");
 
 app.use("/api/chat", chatRouter);
 app.use("/api/user", userRouter);
@@ -51,6 +51,8 @@ app.use("/api/instructorNivMat", instructorNivMatRouter);
 app.use("/api/seanceNiv", seanceNivRouter);
 app.use("/api/seanceNivMat", seanceNivMatRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/notifications", notificationRouter);
+app.use("/api/cantine", cantineRouter);
 
 const { connection } = require('./connection');
 connection.once("open", () => {
