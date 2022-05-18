@@ -134,7 +134,7 @@ exports.findByAssignId = async (req, res) => {
                 '$addFields': {
                     'videoSources': [{
                         'src': "$videoUrl",
-                        'provider': 'vimeo',
+                        'provider': 'youtube',
                     }]
                 }
             },
@@ -224,7 +224,7 @@ exports.findByAssignIdForStudent = async (req, res) => {
                     '$addFields': {
                         'videoSources': [{
                             'src': "$videoUrl",
-                            'provider': 'vimeo',
+                            'provider': 'youtube',
                         }]
                     }
                 },
@@ -251,7 +251,7 @@ exports.findByAssignIdForStudent = async (req, res) => {
                     '$addFields': {
                         'videoSources': [{
                             'src': "$videoUrl",
-                            'provider': 'vimeo',
+                            'provider': 'youtube',
                         }]
                     }
                 },
@@ -331,7 +331,7 @@ exports.findByAssignIdForStudent = async (req, res) => {
                 '$addFields': {
                     'videoSources': [{
                         'src': "$videoUrl",
-                        'provider': 'vimeo',
+                        'provider': 'youtube',
                     }]
                 }
             },
